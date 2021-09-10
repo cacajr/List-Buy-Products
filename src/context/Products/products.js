@@ -1,9 +1,9 @@
 import React, { createContext, useState } from "react";
 
-export const ShoppingCartContext = createContext();
+export const ProductContext = createContext();
 
-const ShoppingCartProvider = ({ children }) => {
-    const [ products, setProducts ] = useState([
+const ProductsProvider = ({ children }) => {
+    const [ products ] = useState([
         {
             id: 133453126,
             title: "Smartphone Motorola Moto G6 Dual Chip Android Oreo - 8.0 Tela 5.7\" Octa-Core 1.8 GHz 32GB 4G Câmera 12 + 5MP (Dual Traseira) - Índigo",
@@ -25,33 +25,33 @@ const ShoppingCartProvider = ({ children }) => {
             brand: "Samsung",
             chipType: "Nano Chip",
             quantity: 4
+        },
+        {
+            id: 133453169,
+            title: "Smartphone Motorola Moto G6 Play Dual Chip Android Oreo - 8.0 Tela 5.7\" Octa-Core 1.4 GHz 32GB 4G Câmera 13MP - Índigo",
+            price: 1099,
+            picture: "https://www.notebookcheck.info/uploads/tx_nbc2/MotorolaMotoG6Play__1_.JPG",
+            description: "Misturando inovação, modernidade e qualidade, o novo moto g6 play chegou para deixar tudo o que você precisa na palma da sua mão, desbravando um mundo de novidades e experiências extremamente inesquecíveis. Com processador octa-core de 1,4 GHz, 3GB de RAM(1), bateria que dura mais de um dia(2) e carregamento TurboPowerTM, você executa suas tarefas sem se preocupar. Além disso, sua deslumbrante Tela Max Vision permite com que você veja sua vida em tela cheia, já que pode assistir a tudo em um incrível espaço HD de 5,7 polegadas. Pensa que acabou? Então prepare-se: este novo integrante da Família moto g6 possui design único feito com polímero de vidro.E não para por aí! Agora você pode registrar todos os seus momentos em fotos incríveis, já que o moto g6 play vem com câmera traseira de 13MP e câmera frontal de 8MP com flash LED. Ah, e ele tem Android Puro 8.0 Oreo, a última versão do sistema operacional mais utilizado em todo o mundo. moto g6 play: com a vida em tela cheia, você se diverte muito mais.",
+            memory: "32GB",
+            brand: "Motorola",
+            chipType: "Nano Chip",
+            quantity: 1
         }
     ]);
 
-    const saveProduct = product => {
-        setProducts(products.concat(product));
+    const getProducts = () => {
+        return products
     }
 
-    const removeProduct = product => {
-        const productDelId = product.id;
-
-        setProducts(products.filter(prod => prod.id != productDelId));
-    }
-
-    const getTotalPrice = () => {
-        let total = 0;
-        products.map((product) => {
-            total += product.price
-        });
-
-        return total
+    // TO DO!!! SERVIRÁ PARA O SEARCH DO COMPONENTE HEADER
+    const searchProduct = () => {
     }
 
     return (
-        <ShoppingCartContext.Provider value={{ products, saveProduct, removeProduct, getTotalPrice }}>
+        <ProductContext.Provider value={{ getProducts }}>
             {children}
-        </ShoppingCartContext.Provider>
+        </ProductContext.Provider>
     );
 }
 
-export default ShoppingCartProvider;
+export default ProductsProvider;

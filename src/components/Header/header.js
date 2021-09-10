@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { ShoppingCartContext } from '../../context/ShoppingCart/shoppingCart';
+
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -79,6 +82,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Header() {
+
+  const shoppingCartContext = useContext(ShoppingCartContext);
+  const products = shoppingCartContext.products;
+
   const classes = useStyles();
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -115,7 +122,7 @@ function Header() {
       <Link to='meucarrinho' style={{ color: 'black',  textDecoration: 'none'}}>
         <MenuItem>
             <IconButton aria-label="shoppingcart" color="inherit">
-            <Badge badgeContent={2} color="secondary">
+            <Badge badgeContent={products.length} color="secondary">
                 <ShoppingCart />
             </Badge>
             </IconButton>
@@ -126,8 +133,8 @@ function Header() {
   );
 
   return (
-    <div className={classes.grow} style={{ marginBottom: '15px' }}>
-      <AppBar position="static">
+    <div className={classes.grow} style={{ marginBottom: '80px' }}>
+      <AppBar position="fixed">
         <Toolbar>
           <Link to='/' style={{ color: 'white',  textDecoration: 'none'}}>
             <Typography className={classes.title} variant="h6" noWrap>
@@ -153,10 +160,12 @@ function Header() {
           <div className={classes.sectionDesktop}>
             <Link to='/meucarrinho' style={{ color: 'white',  textDecoration: 'none'}}>
                 <IconButton aria-label="shoppingcart" color="inherit">
-                    <Badge badgeContent={2} color="secondary" style={{ marginRight: "15px" }}>
+                    <Badge badgeContent={products.length} color="secondary" style={{ marginRight: "15px" }}>
                         <ShoppingCart />
                     </Badge>
-                    <Typography variant="h6" noWrap> R$ 200,00 </Typography>
+                    <Typography variant="h6" noWrap> 
+                      {shoppingCartContext.getTotalPrice().toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} 
+                      </Typography>
                 </IconButton>
             </Link>
           </div>

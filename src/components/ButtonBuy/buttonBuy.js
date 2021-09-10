@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { ShoppingCartContext } from '../../context/ShoppingCart/shoppingCart';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -15,11 +17,14 @@ const useStyles = makeStyles({
     }
   });
 
-function ButtonBuy() {
+function ButtonBuy({ product }) {
+    const shoppingCartContext = useContext(ShoppingCartContext);
+
     const classes = useStyles();
 
     return (
-        <Button size="large" color="primary" className={classes.button}>
+        <Button size="large" color="primary" className={classes.button}
+          onClick={() => shoppingCartContext.saveProduct(product)}>
             Comprar
         </Button>
     );

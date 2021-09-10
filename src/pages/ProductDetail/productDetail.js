@@ -8,26 +8,26 @@ import ButtonBuy from '../../components/ButtonBuy/buttonBuy';
 import Typography from '@material-ui/core/Typography';
 
 function ProductDetail() {
-    const { title, picture, description, price } = useLocation().state;
+    const product = useLocation().state.product;
 
     return (
         <Container>
-            <Title> {title} </Title>
+            <Title> {product.title} </Title>
 
             <Image>
                 <img
-                    src = {picture}
+                    src = {product.picture}
                 />
             </Image>
 
-            <Description> {description} </Description>
+            <Description> {product.description} </Description>
 
             <BuyContainer>
                 <Typography gutterBottom variant="h6" component="h2" style={{ marginRight: '20px' }}>
-                    {price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
+                    {product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
                 </Typography>
 
-                <ButtonBuy />
+                <ButtonBuy product={product}/>
             </BuyContainer>
         </Container>
     );

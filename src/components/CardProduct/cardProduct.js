@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   },
 });
 
-function CardProduct({ picture, title, price, description }) {
+function CardProduct({ product }) {
   const classes = useStyles();
 
   return (
@@ -30,26 +30,21 @@ function CardProduct({ picture, title, price, description }) {
       <Link 
         to={{ 
           pathname: '/detalharproduto',
-          state: {
-            title: title,
-            picture: picture,
-            description: description,
-            price: price
-          }
+          state: {product}
         }} 
         style={{ color: 'black',  textDecoration: 'none'}}
       >
         <CardActionArea>
           <CardMedia
             component="img"
-            alt={title}
+            alt={product.title}
             height="350"
-            image={picture}
-            title={title}
+            image={product.picture}
+            title={product.title}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {title}
+              {product.title}
             </Typography>
           </CardContent>
         </CardActionArea>
@@ -57,10 +52,10 @@ function CardProduct({ picture, title, price, description }) {
 
       <CardActions className={classes.actions}>
         <Typography gutterBottom variant="h6" component="h2">
-          {price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
+          {product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
         </Typography>
 
-        <ButtonBuy />
+        <ButtonBuy product={product}/>
       </CardActions>
     </Card>
   );
