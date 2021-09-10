@@ -117,7 +117,7 @@ function Header() {
   );
 
   return (
-    <div className={classes.grow}>
+    <div className={classes.grow} style={{ marginBottom: '15px' }}>
       <AppBar position="static">
         <Toolbar>
           <Link to='/' style={{ color: 'white',  textDecoration: 'none'}}>

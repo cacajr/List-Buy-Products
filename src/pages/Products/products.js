@@ -1,9 +1,14 @@
 import React from 'react';
 
-import { Title } from './styles';
+import { Container } from './styles';
+import ListProducts from '../../components/ListProducts/listProducts'
 
 function Products() {
-    return <Title> Products </Title>
+    return (
+        <Container>
+            <ListProducts />
+        </Container>
+    );
 }
 
 export default Products;
