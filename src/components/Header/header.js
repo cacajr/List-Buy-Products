@@ -10,7 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { ShoppingCart } from '@material-ui/icons';
+import { ShoppingCart, List } from '@material-ui/icons';
 
 import { Link } from 'react-router-dom';
 
@@ -103,6 +103,15 @@ function Header() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+      <Link to='/' style={{ color: 'black',  textDecoration: 'none'}}>
+        <MenuItem>
+            <IconButton aria-label="listproducts" color="inherit">
+              <List />
+            </IconButton>
+            <p>Produtos</p>
+        </MenuItem>
+      </Link>
+
       <Link to='meucarrinho' style={{ color: 'black',  textDecoration: 'none'}}>
         <MenuItem>
             <IconButton aria-label="shoppingcart" color="inherit">
@@ -144,9 +153,10 @@ function Header() {
           <div className={classes.sectionDesktop}>
             <Link to='/meucarrinho' style={{ color: 'white',  textDecoration: 'none'}}>
                 <IconButton aria-label="shoppingcart" color="inherit">
-                    <Badge badgeContent={2} color="secondary">
+                    <Badge badgeContent={2} color="secondary" style={{ marginRight: "15px" }}>
                         <ShoppingCart />
                     </Badge>
+                    <Typography variant="h6" noWrap> R$ 200,00 </Typography>
                 </IconButton>
             </Link>
           </div>

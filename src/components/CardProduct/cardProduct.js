@@ -1,46 +1,66 @@
 import React from 'react';
+
+import { Link } from 'react-router-dom';
+
+import ButtonBuy from '../../components/ButtonBuy/buttonBuy';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
   },
-  media: {
-    height: 140,
+  actions: {
+    display: "flex",
+    justifyContent: "space-between"
   },
 });
 
-function CardProduct({ picture, title, price }) {
+function CardProduct({ picture, title, price, description }) {
   const classes = useStyles();
 
   return (
     <Card className={classes.root} style={{ marginBottom: '15px' }}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image = {picture}
-          title= {title}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {title}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
+      <Link 
+        to={{ 
+          pathname: '/detalharproduto',
+          state: {
+            title: title,
+            picture: picture,
+            description: description,
+            price: price
+          }
+        }} 
+        style={{ color: 'black',  textDecoration: 'none'}}
+      >
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            alt={title}
+            height="350"
+            image={picture}
+            title={title}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {title}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Link>
+
+      <CardActions className={classes.actions}>
         <Typography gutterBottom variant="h6" component="h2">
-          {price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}).replace(".", ",")}
+          {price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
         </Typography>
-        <Button size="big" color="primary">
-          Comprar
-        </Button>
+
+        <ButtonBuy />
       </CardActions>
     </Card>
   );
