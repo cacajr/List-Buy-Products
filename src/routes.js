@@ -1,17 +1,19 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import Main from './pages/Main/main';
-import Page01 from './pages/Page01/page01';
-import Page02 from './pages/Page02/page02';
+import Header from './components/Header/header';
+import Products from './pages/Products/products';
+import ProductDetail from './pages/ProductDetail/productDetail';
+import ShoppingCart from './pages/ShoppingCart/shoppingCart';
 
 export default function Routes() {
     return (
         <BrowserRouter>
+            <Header />
             <Switch>
-                <Route path='/' exact component={Main} />
-                <Route path='/page01' component={Page01} />
-                <Route path='/page02' component={Page02} />
+                <Route path='/' exact component={Products} />
+                <Route path='/detalharproduto' component={ProductDetail} />
+                <Route path='/meucarrinho' component={ShoppingCart} />
             </Switch>
         </BrowserRouter>
     );
