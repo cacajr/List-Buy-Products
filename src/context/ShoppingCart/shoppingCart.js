@@ -17,7 +17,7 @@ const ShoppingCartProvider = ({ children }) => {
             let newProduct = products.filter(prod => prod.id == product.id)[0]
             newProduct.quantity += 1;
 
-            let newList = products.filter(prod => prod.id != product.id).concat(newProduct);
+            let newList = products.slice( 0, products.indexOf(product)).concat([newProduct]).concat(products.slice(products.indexOf(product) + 1));
 
             setProducts(newList);
         }
@@ -30,7 +30,7 @@ const ShoppingCartProvider = ({ children }) => {
             let newProduct = products.filter(prod => prod.id == product.id)[0]
             newProduct.quantity -= 1;
 
-            let newList = products.filter(prod => prod.id != product.id).concat(newProduct);
+            let newList = products.slice( 0, products.indexOf(product)).concat([newProduct]).concat(products.slice(products.indexOf(product) + 1));
 
             setProducts(newList);
         }
