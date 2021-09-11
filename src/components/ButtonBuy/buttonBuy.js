@@ -23,10 +23,18 @@ function ButtonBuy({ product }) {
     const classes = useStyles();
 
     return (
-        <Button size="large" color="primary" className={classes.button}
-          onClick={() => shoppingCartContext.saveProduct(product)}>
-            Comprar
-        </Button>
+      <>
+        {product.quantity > 0 ?
+          <Button size="large" color="primary" className={classes.button}
+              onClick={() => shoppingCartContext.saveProduct(product)}>
+                Comprar
+          </Button>
+          :
+          <Button size="large" color="primary" disabled>
+                Comprar
+          </Button>
+        }
+      </>
     );
 }
 

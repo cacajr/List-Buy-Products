@@ -35,7 +35,7 @@ const ProductsProvider = ({ children }) => {
             memory: "32GB",
             brand: "Motorola",
             chipType: "Nano Chip",
-            quantity: 1
+            quantity: 0
         }
     ]);
 

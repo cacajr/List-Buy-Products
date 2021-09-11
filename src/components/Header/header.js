@@ -84,7 +84,6 @@ const useStyles = makeStyles((theme) => ({
 function Header() {
 
   const shoppingCartContext = useContext(ShoppingCartContext);
-  const products = shoppingCartContext.products;
 
   const classes = useStyles();
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -122,7 +121,7 @@ function Header() {
       <Link to='meucarrinho' style={{ color: 'black',  textDecoration: 'none'}}>
         <MenuItem>
             <IconButton aria-label="shoppingcart" color="inherit">
-            <Badge badgeContent={products.length} color="secondary">
+            <Badge badgeContent={shoppingCartContext.getTotalProduct()} color="secondary">
                 <ShoppingCart />
             </Badge>
             </IconButton>
@@ -160,7 +159,7 @@ function Header() {
           <div className={classes.sectionDesktop}>
             <Link to='/meucarrinho' style={{ color: 'white',  textDecoration: 'none'}}>
                 <IconButton aria-label="shoppingcart" color="inherit">
-                    <Badge badgeContent={products.length} color="secondary" style={{ marginRight: "15px" }}>
+                    <Badge badgeContent={shoppingCartContext.getTotalProduct()} color="secondary" style={{ marginRight: "15px" }}>
                         <ShoppingCart />
                     </Badge>
                     <Typography variant="h6" noWrap> 
