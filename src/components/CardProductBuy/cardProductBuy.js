@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   },
 });
 
-function CardProductBuy({ product }) {
+function CardProductBuy({ product, hasProduct }) {
   const shoppingCartContext = useContext(ShoppingCartContext);
 
   const classes = useStyles();
@@ -59,11 +59,15 @@ function CardProductBuy({ product }) {
             <Typography gutterBottom variant="subtitle2">
                 {product.quantity}
             </Typography>
-            <IconButton style={{ height: "5px", width: "5px" }}
-              onClick={() => shoppingCartContext.saveProduct(product)}
-            >
-              <Add color="primary"/>
-            </IconButton>
+            {hasProduct(product) ? 
+              <IconButton style={{ height: "5px", width: "5px" }}
+                onClick={() => shoppingCartContext.saveProduct(product)}
+              >
+                <Add color="primary"/>
+              </IconButton>
+            :
+              <IconButton style={{ height: "5px", width: "5px" }} disabled>
+              </IconButton>}
         </CardActions>
     </Card>
   );

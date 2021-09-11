@@ -45,12 +45,20 @@ const ProductsProvider = ({ children }) => {
         setProducts(newList);
     }
 
+    const hasProduct = product => {
+        let item = products.filter(prod => prod.id === product.id)[0];
+        if (item.quantity > 0) {
+            return true
+        }
+        return false
+    }
+
     // TO DO!!! SERVIRÁ PARA O SEARCH DO COMPONENTE HEADER
     const searchProduct = () => {
     }
 
     return (
-        <ProductContext.Provider value={{ getProducts, incrementProduct, decrementProduct }}>
+        <ProductContext.Provider value={{ getProducts, incrementProduct, decrementProduct, hasProduct }}>
             {children}
         </ProductContext.Provider>
     );
