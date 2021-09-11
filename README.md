@@ -1,5 +1,5 @@
 # Introdução
-Esta aplicação foi construída no intuito de aperfeiçoamento do uso de Context, Hooks e Material UI com React.JS.
+Esta aplicação foi construída para estudo do uso de Context, Hooks e Material UI com React.JS.
 
 A aplicação tem como objetivo simular a listagem e compra de produtos consumidos de uma API REST.
 
@@ -8,7 +8,7 @@ Para testar o projeto, basta que o repositório seja clonado. Em seguida, as dep
 
 ```npm install```
 
-Para simular uma api REST, foi utiliazado <strong>json-server</strong>. Por este motivo, para que a aplicação consuma o serviço, deve-se entrar na pasta <strong>/mock_backend</strong> e executar o seguinte comando: 
+Para simular uma api REST, foi utiliazado [json-server](https://www.npmjs.com/package/json-server). Por este motivo, para que a aplicação consuma o serviço, deve-se entrar na pasta <strong>/mock_backend</strong> e executar o seguinte comando: 
 
 ```json-server --watch products.json --port 3004```
 
