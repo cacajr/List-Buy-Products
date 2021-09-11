@@ -28,9 +28,9 @@ const ShoppingCartProvider = ({ children }) => {
 
     const removeProduct = product => {
         if (product.quantity === 1){
-            setProducts(products.filter(prod => prod.id != product.id));
+            setProducts(products.filter(prod => prod.id !== product.id));
         } else {
-            let newProduct = products.filter(prod => prod.id === product.id)[0]
+            let newProduct = products.filter(prod => prod.id === product.id)[0];
             newProduct.quantity -= 1;
 
             let newList = products.slice( 0, products.indexOf(product))
