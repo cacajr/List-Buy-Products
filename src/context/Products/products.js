@@ -21,12 +21,36 @@ const ProductsProvider = ({ children }) => {
         return products
     }
 
+    const incrementProduct = product => {
+        let newProduct = products.filter(prod => prod.id === product.id)[0];
+        const indexNewProduct = products.indexOf(newProduct);
+        newProduct.quantity += 1;
+
+        let newList = products.slice( 0, indexNewProduct)
+                                .concat([newProduct])
+                                .concat(products.slice(indexNewProduct + 1));
+
+        setProducts(newList);
+    }
+
+    const decrementProduct = product => {
+        let newProduct = products.filter(prod => prod.id === product.id)[0];
+        const indexNewProduct = products.indexOf(newProduct);
+        newProduct.quantity -= 1;
+
+        let newList = products.slice( 0, indexNewProduct)
+                                .concat([newProduct])
+                                .concat(products.slice(indexNewProduct + 1));
+
+        setProducts(newList);
+    }
+
     // TO DO!!! SERVIRÁ PARA O SEARCH DO COMPONENTE HEADER
     const searchProduct = () => {
     }
 
     return (
-        <ProductContext.Provider value={{ getProducts }}>
+        <ProductContext.Provider value={{ getProducts, incrementProduct, decrementProduct }}>
             {children}
         </ProductContext.Provider>
     );

@@ -1,9 +1,13 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
+
+import { ProductContext } from '../Products/products';
 
 export const ShoppingCartContext = createContext();
 
 const ShoppingCartProvider = ({ children }) => {
     const [ products, setProducts ] = useState([]);
+
+    const productContext = useContext(ProductContext);
 
     const saveProduct = product => {
         const newQuantity = products.filter(prod => prod.id === product.id).length
@@ -24,6 +28,8 @@ const ShoppingCartProvider = ({ children }) => {
 
             setProducts(newList);
         }
+
+        productContext.decrementProduct(product)
     }
 
     const removeProduct = product => {
@@ -39,6 +45,8 @@ const ShoppingCartProvider = ({ children }) => {
 
             setProducts(newList);
         }
+
+        productContext.incrementProduct(product)
     }
 
     const getTotalProduct = () => {
